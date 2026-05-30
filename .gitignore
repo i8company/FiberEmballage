@@ -1,0 +1,19 @@
+# Secrets
+.env
+*.key
+*.pem
+
+# Dados (volumes Docker)
+data/
+*.sql
+*.sql.gz
+*.zip
+*.tar.gz
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/

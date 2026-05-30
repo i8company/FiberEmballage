@@ -1,0 +1,46 @@
+services:
+  wordpress:
+    image: wordpress:6.7-php8.2-apache
+    container_name: fiber-wp
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${DB_NAME}
+      WORDPRESS_TABLE_PREFIX: ${WP_TABLE_PREFIX:-wp_}
+      WORDPRESS_DEBUG: "false"
+    volumes:
+      - ./data/wordpress:/var/www/html
+    networks:
+      - proxy
+      - internal
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.fiber.entrypoints=websecure"
+      - "traefik.http.routers.fiber.rule=Host(`fiberemballage.com`) || Host(`www.fiberemballage.com`)"
+      - "traefik.http.routers.fiber.tls.certresolver=le"
+      - "traefik.http.services.fiber.loadbalancer.server.port=80"
+
+  db:
+    image: mariadb:11
+    container_name: fiber-db
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - ./data/mariadb:/var/lib/mysql
+    networks:
+      - internal
+
+networks:
+  proxy:
+    external: true
+  internal:
+    driver: bridge
