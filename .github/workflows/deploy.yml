@@ -22,33 +22,22 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Sync config files (docker-compose, README)
+      - name: Deploy static site to web root
         run: |
-          rsync -avz \
+          rsync -avz --delete \
             --exclude='.git' \
             --exclude='.github' \
-            --exclude='wp-content/' \
-            --exclude='data/' \
+            --exclude='novo-site 11/' \
+            --exclude='docker-compose.yml' \
             --exclude='.env' \
+            --exclude='data/' \
+            --exclude='wp-content/' \
             --exclude='*.sql' \
-            ./ ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/opt/fiber-emballage/
-
-      - name: Sync active theme
-        run: |
-          rsync -avz --delete \
-            wp-content/themes/twentytwentyfour/ \
-            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/opt/fiber-emballage/data/wordpress/wp-content/themes/twentytwentyfour/
-
-      - name: Sync mu-plugins
-        run: |
-          rsync -avz --delete \
-            wp-content/mu-plugins/ \
-            ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/opt/fiber-emballage/data/wordpress/wp-content/mu-plugins/
+            ./ ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/opt/fiber-emballage/data/wordpress/
 
       - name: Fix permissions and reload Apache
         run: |
           ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'ENDSSH'
-            chown -R 33:33 /opt/fiber-emballage/data/wordpress/wp-content/themes/twentytwentyfour
-            chown -R 33:33 /opt/fiber-emballage/data/wordpress/wp-content/mu-plugins
+            chown -R 33:33 /opt/fiber-emballage/data/wordpress/
             docker exec fiber-wp apachectl graceful 2>/dev/null || docker restart fiber-wp
           ENDSSH
