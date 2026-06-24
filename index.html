@@ -238,19 +238,48 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
-      align-items: center;
+      align-items: stretch;
       margin-top: 56px;
     }
     .sobre-img {
       background: linear-gradient(145deg, var(--sand), var(--tan));
       border-radius: 16px;
-      aspect-ratio: 4/5;
+      aspect-ratio: unset;
+      height: 100%;
+      min-height: 480px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 6rem;
       box-shadow: 12px 12px 0 var(--sand);
+      position: relative;
+      overflow: hidden;
+      padding: 0;
     }
+    .carousel-inner { width: 100%; height: 100%; position: relative; }
+    .carousel-item {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: 0; transition: opacity 0.5s ease-in-out;
+    }
+    .carousel-item.active { opacity: 1; z-index: 1; }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.7); border: none; color: var(--dark);
+      font-size: 1.5rem; padding: 10px 14px; cursor: pointer; z-index: 10;
+      border-radius: 50%; transition: background 0.3s;
+    }
+    .carousel-btn:hover { background: rgba(255, 255, 255, 0.9); }
+    .carousel-btn.prev { left: 10px; }
+    .carousel-btn.next { right: 10px; }
+    .carousel-dots {
+      position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 8px; z-index: 10;
+    }
+    .dot {
+      width: 10px; height: 10px; background: rgba(255,255,255,0.5);
+      border-radius: 50%; cursor: pointer; transition: background 0.3s;
+    }
+    .dot.active { background: var(--white); }
     .sobre-text h3 {
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
@@ -283,6 +312,23 @@
       margin-top: 80px;
       padding-top: 64px;
       border-top: 1px solid var(--sand);
+    }
+    .materia-carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;  /* IE and Edge */
+    }
+    .materia-carousel::-webkit-scrollbar { display: none; }
+    .materia-carousel img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      flex: 0 0 100%;
+      scroll-snap-align: center;
     }
     .materia-cards {
       display: grid;
@@ -332,8 +378,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 4rem;
       position: relative;
+      background-size: cover;
+      background-position: center;
     }
     .curso-badge {
       position: absolute;
@@ -400,80 +447,31 @@
       margin-bottom: 10px;
     }
 
-    /* ── ENCOMENDAS ─────────────────────────────────── */
-    #encomendas {
+    /* ── GALERIA ─────────────────────────────────── */
+    #galeria {
       background: linear-gradient(135deg, var(--dark) 0%, #5C3A22 100%);
       color: var(--white);
     }
-    #encomendas .section-label { color: var(--tan); }
-    #encomendas .section-title { color: var(--white); }
-    #encomendas .section-subtitle { color: rgba(255,255,255,0.75); }
+    #galeria .section-label { color: var(--tan); }
+    #galeria .section-title { color: var(--white); }
+    #galeria .section-subtitle { color: rgba(255,255,255,0.75); }
 
-    .encomendas-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: start;
+    .galeria-content {
       margin-top: 56px;
+      text-align: center;
     }
-    .encomendas-left p {
-      font-size: 0.95rem;
-      color: rgba(255,255,255,0.75);
-      line-height: 1.85;
-      margin-bottom: 16px;
-    }
-    .btn-whatsapp {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 15px 32px;
-      background: #25D366;
+    .btn-galeria {
+      display: inline-block;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, var(--tan), var(--brown));
       color: var(--white);
       font-weight: 600;
       font-size: 1rem;
       border-radius: 8px;
       text-decoration: none;
-      margin-top: 16px;
-      transition: background 0.2s, transform 0.15s;
+      transition: opacity 0.2s, transform 0.15s;
     }
-    .btn-whatsapp:hover { background: #1ebe5b; transform: translateY(-2px); }
-    .btn-whatsapp svg { width: 22px; height: 22px; fill: currentColor; }
-
-    .contato-box {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 16px;
-      padding: 32px;
-    }
-    .contato-box h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      color: var(--tan);
-      margin-bottom: 24px;
-    }
-    .contato-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .contato-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .contato-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      background: rgba(201,169,122,0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-    .contato-item-text { font-size: 0.9rem; }
-    .contato-item-text span { display: block; color: rgba(255,255,255,0.45); font-size: 0.75rem; margin-bottom: 2px; }
-    .contato-item-text a { color: var(--white); text-decoration: none; font-weight: 500; }
-    .contato-item-text a:hover { color: var(--tan); }
+    .btn-galeria:hover { opacity: 0.9; transform: translateY(-2px); }
 
     /* ── E-BOOK ─────────────────────────────────────── */
     #ebook { background: var(--white); }
@@ -623,7 +621,6 @@
       #home { padding: 100px 20px 80px; }
 
       .sobre-grid,
-      .encomendas-grid,
       .ebook-inner { grid-template-columns: 1fr; gap: 40px; }
       .sobre-img { aspect-ratio: 3/2; font-size: 4rem; }
 
@@ -641,8 +638,8 @@
   <ul class="nav-links">
     <li><a href="#sobre">Sobre Nós</a></li>
     <li><a href="#cursos">Cursos</a></li>
-    <li><a href="#encomendas">Encomendas</a></li>
-    <li><a href="/ebook" class="nav-cta">E-book Grátis 🧵</a></li>
+    <li><a href="#galeria">Galeria de Obras</a></li>
+    <li><a href="https://www.fiberemballage.com/ebook" class="nav-cta">E-book Grátis 🧵</a></li>
   </ul>
   <div class="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -651,15 +648,15 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="#sobre" onclick="closeMenu()">Sobre Nós</a>
   <a href="#cursos" onclick="closeMenu()">Cursos</a>
-  <a href="#encomendas" onclick="closeMenu()">Encomendas</a>
-  <a href="/ebook" onclick="closeMenu()">E-book Grátis 🧵</a>
+  <a href="#galeria" onclick="closeMenu()">Galeria de Obras</a>
+  <a href="https://www.fiberemballage.com/ebook" onclick="closeMenu()">E-book Grátis 🧵</a>
 </div>
 
 <!-- ══ HERO ════════════════════════════════════════════ -->
 <section id="home">
   <div class="hero-inner">
     <div class="hero-badge">Arte · Técnica · Transformação</div>
-    <h1>Transforme fibras em <em>arte</em> de alto valor</h1>
+    <h1>Transforme fibras em <em>produtos decorativos</em></h1>
     <p>Aprenda a técnica infalível que une criatividade e negócio — do iniciante ao ateliê profissional.</p>
     <div class="hero-btns">
       <a href="#cursos" class="btn-primary">Conhecer os cursos</a>
@@ -673,16 +670,31 @@
 <section id="sobre">
   <div class="section-inner">
 
-    <p class="section-label">Sobre Nós</p>
-    <h2 class="section-title">Uma técnica, infinitas possibilidades</h2>
-    <p class="section-subtitle">A Fiber Emballage nasceu da paixão de Alana Morais por transformar fibras naturais em peças únicas — acessíveis de aprender, valiosas de ter.</p>
+    <p class="section-label" style="text-align:center;">Sobre Nós</p>
+    <h2 class="section-title" style="text-align:center;">Uma técnica, infinitas possibilidades</h2>
 
     <div class="sobre-grid">
-      <div class="sobre-img">🧵</div>
+      <div class="sobre-img carousel" id="alana-carousel">
+        <div class="carousel-inner">
+          <img src="IMAGENS/ALANA 01.JPG" alt="Alana Morais - Foto 1" class="carousel-item active">
+          <img src="IMAGENS/ALANA 02.jpg" alt="Alana Morais - Foto 2" class="carousel-item">
+          <img src="IMAGENS/ALANA 03.jpg" alt="Alana Morais - Foto 3" class="carousel-item">
+        </div>
+        <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+        <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+        <div class="carousel-dots">
+          <span class="dot active" onclick="setCarousel(0)"></span>
+          <span class="dot" onclick="setCarousel(1)"></span>
+          <span class="dot" onclick="setCarousel(2)"></span>
+        </div>
+      </div>
       <div class="sobre-text">
+        <h3>DaOrla</h3>
+        <p>A DaOrla é uma marca que cria produtos decorativos exclusivos através de fibras naturais — peças únicas que unem identidade artesanal, beleza contemporânea e alto valor percebido. Cada criação carrega intenção, textura e alma.</p>
+        <p>A Fiber Emballage nasceu da paixão de Alana Morais por transformar fibras naturais em peças únicas — acessíveis de aprender, valiosas de ter.</p>
         <h3>Quem é Alana Morais</h3>
         <p>Com mais de 30 anos de experiência no mundo do artesanato e Mestrado em Cultura Visual, Alana Morais é a mente criativa por trás da Fiber Emballage — uma técnica autoral que une simplicidade de aprendizado com resultados de alto impacto visual e comercial.</p>
-        <p>Sua missão é simples: empoderar artesãs a transformarem o seu ateliê em um negócio próspero, com técnicas acessíveis e resultados extraordinários.</p>
+        <p>Sua missão é simples: empoderar artesãs a transformarem o seu ateliê em um negócio próspero, com técnicas e materiais acessíveis.</p>
         <p><em>"Qualquer pessoa com vontade de aprender pode criar peças que encantam e vendem."</em></p>
         <div class="sobre-stats">
           <div class="stat"><strong>30+</strong><span>anos de experiência</span></div>
@@ -699,22 +711,26 @@
       <p class="section-subtitle">Trabalhamos com fibras naturais e sintéticas de alta qualidade, cada uma com seu caráter único para criar peças exclusivas.</p>
       <div class="materia-cards">
         <div class="materia-card">
-          <div class="icon">🌾</div>
+          <img src="IMAGENS/fios_cordoes_2.png" alt="Fibras Naturais" style="width:100%;border-radius:8px;margin-bottom:12px;object-fit:cover;aspect-ratio:4/3;">
           <h4>Fibras Naturais</h4>
           <p>Rafias, juncos e fibras vegetais que trazem textura orgânica e autenticidade às peças.</p>
         </div>
         <div class="materia-card">
-          <div class="icon">🎋</div>
+          <img src="IMAGENS/bambu e palha.png" alt="Bambu & Palha" style="width:100%;border-radius:8px;margin-bottom:12px;object-fit:cover;aspect-ratio:4/3;">
           <h4>Bambu & Palha</h4>
           <p>Resistentes e versáteis, perfeitos para estruturas, cestos e esculturas de parede.</p>
         </div>
         <div class="materia-card">
-          <div class="icon">🧶</div>
+          <div class="materia-carousel">
+            <img src="IMAGENS/fios_cordoes_1.png" alt="Fios e Cordões 1">
+            <img src="IMAGENS/fios_cordoes_2.png" alt="Fios e Cordões 2">
+            <img src="IMAGENS/fios_cordoes_3.png" alt="Fios e Cordões 3">
+          </div>
           <h4>Fios & Cordões</h4>
           <p>Algodão, linho e macramê em diferentes espessuras para cada tipo de criação.</p>
         </div>
         <div class="materia-card">
-          <div class="icon">✨</div>
+          <img src="IMAGENS/Madeira.png" alt="Acabamentos Especiais" style="width:100%;border-radius:8px;margin-bottom:12px;object-fit:cover;aspect-ratio:4/3;">
           <h4>Acabamentos Especiais</h4>
           <p>Miçangas, penas, metais e elementos naturais que elevam o valor percebido de cada peça.</p>
         </div>
@@ -737,63 +753,63 @@
 
       <!-- Decoração -->
       <div class="curso-card">
-        <div class="curso-thumb">🏡<span class="curso-badge">Decoração</span></div>
+        <div class="curso-thumb" style="background-image: url('IMAGENS/cocar_branco.jpg');"><span class="curso-badge">Decoração</span></div>
         <div class="curso-body">
           <h3>Fiber Emballage — Decoração</h3>
           <p>Aprenda a criar esculturas de parede, guirlandas, bandejas e peças decorativas únicas com a técnica Fiber Emballage. Perfeito para decorar e vender.</p>
-          <a href="https://pay.hotmart.com/Y62380737S" target="_blank" class="btn-curso">Quero este curso →</a>
+          <a href="decoracao.html" class="btn-curso">Quero este curso →</a>
         </div>
       </div>
 
       <!-- Acessórios -->
       <div class="curso-card">
-        <div class="curso-thumb">💍<span class="curso-badge">Acessórios</span></div>
+        <div class="curso-thumb" style="background-image: url('IMAGENS/acessorios 1.png');"><span class="curso-badge">Acessórios</span></div>
         <div class="curso-body">
           <h3>Fiber Emballage — Acessórios</h3>
           <p>Crie colares, brincos, pulseiras e cocares em fibra com acabamento profissional. Acessórios com alto potencial de venda e identidade única.</p>
-          <a href="https://pay.hotmart.com/V73228439H" target="_blank" class="btn-curso">Quero este curso →</a>
+          <a href="acessorios-texteis.html" class="btn-curso">Quero este curso →</a>
         </div>
       </div>
 
       <!-- Tassel -->
       <div class="curso-card">
-        <div class="curso-thumb">🎀<span class="curso-badge">Tassel</span></div>
+        <div class="curso-thumb" style="background-image: url('curso_tassel.jpg');"><span class="curso-badge">Tassel</span></div>
         <div class="curso-body">
           <h3>Tassel</h3>
           <p>Domine a arte dos tassels e pompons — um dos acabamentos mais versáteis do artesanato têxtil, presentes em centenas de tipos de peças.</p>
-          <a href="https://pay.hotmart.com/X82317985T" target="_blank" class="btn-curso">Quero este curso →</a>
+          <a href="tassel.html" class="btn-curso">Quero este curso →</a>
         </div>
       </div>
 
       <!-- Natal Boho -->
       <div class="curso-card">
-        <div class="curso-thumb">🌿<span class="curso-badge">Natal</span></div>
+        <div class="curso-thumb" style="background-image: url('IMAGENS/meu-natal-boho-01.png');"><span class="curso-badge">Natal</span></div>
         <div class="curso-body">
           <h3>Meu Natal Boho</h3>
           <p>Crie uma coleção natalina autoral com estética boho — enfeites, guirlandas e presentes artesanais que encantam e vendem na época mais especial do ano.</p>
-          <a href="https://pay.hotmart.com/D76693693D" target="_blank" class="btn-curso">Quero este curso →</a>
+          <a href="meu-natal-boho.html" class="btn-curso">Quero este curso →</a>
         </div>
       </div>
 
       <!-- Combo -->
       <div class="curso-card destaque">
-        <div class="curso-thumb">🎁<span class="curso-badge">Mais Popular</span></div>
+        <div class="curso-thumb" style="background-image: url('IMAGENS/combo%20decor%20+%20acessorios.png'); background-size: cover; background-position: center;"><span class="curso-badge">Mais Popular</span></div>
         <div class="curso-body">
           <span class="desconto-tag">🏷 Melhor preço — Combo</span>
           <h3>Combo — Decoração + Acessórios</h3>
           <p>Os dois cursos mais vendidos em um único acesso com preço especial. A combinação perfeita para quem quer dominar tanto a decoração quanto os acessórios em fibra.</p>
-          <a href="https://pay.hotmart.com/R77896737H" target="_blank" class="btn-curso">Quero o Combo →</a>
+          <a href="combo.html" class="btn-curso">Quero o Combo →</a>
         </div>
       </div>
 
       <!-- Triplo -->
       <div class="curso-card destaque">
-        <div class="curso-thumb">👑<span class="curso-badge">Completo</span></div>
+        <div class="curso-thumb" style="background-image: url('IMAGENS/triplo-decor-acess-tassel.png'); background-size: cover; background-position: center;"><span class="curso-badge">Completo</span></div>
         <div class="curso-body">
           <span class="desconto-tag">🏷 Máxima economia — Triplo</span>
           <h3>Triplo — Decoração + Acessórios + Tassel</h3>
           <p>O pacote completo da Fiber Emballage com o maior desconto. Tudo que você precisa para se tornar uma artesã completa e construir um ateliê de sucesso.</p>
-          <a href="https://pay.hotmart.com/R92182162J" target="_blank" class="btn-curso">Quero o Triplo →</a>
+          <a href="triplo.html" class="btn-curso">Quero o Triplo →</a>
         </div>
       </div>
 
@@ -801,51 +817,15 @@
   </div>
 </section>
 
-<!-- ══ ENCOMENDAS ══════════════════════════════════════ -->
-<section id="encomendas">
-  <div class="section-inner">
-    <p class="section-label">Encomendas</p>
-    <h2 class="section-title">Quer uma peça exclusiva?</h2>
-    <p class="section-subtitle">Aceitamos encomendas de peças personalizadas em fibras naturais para decoração, presentes e eventos especiais.</p>
+<!-- ══ GALERIA ═════════════════════════════════════════ -->
+<section id="galeria">
+  <div class="section-inner" style="text-align: center;">
+    <p class="section-label">Galeria de Obras</p>
+    <h2 class="section-title">Peças Exclusivas</h2>
+    <p class="section-subtitle" style="margin: 0 auto;">A Fiber Emballage cria peças únicas de forma exclusiva e as disponibiliza para venda. Em breve, você poderá conferir nosso acervo de obras prontas e adquiri-las diretamente pela nossa galeria.</p>
 
-    <div class="encomendas-grid">
-      <div class="encomendas-left">
-        <p>Cada encomenda é criada com cuidado e dedicação, respeitando o seu gosto e a identidade que você quer transmitir. Seja para decorar sua casa, presentear alguém especial ou criar um brinde corporativo único — estamos aqui para criar juntos.</p>
-        <p>Entre em contato pelo WhatsApp e vamos conversar sobre o que você imagina. O atendimento é feito diretamente pela Alana.</p>
-        <a
-          href="https://wa.me/5548999797042?text=Ol%C3%A1%2C+Alana!+Gostaria+de+fazer+uma+encomenda+de+pe%C3%A7as+Fiber+Emballage+%F0%9F%A7%B5"
-          target="_blank"
-          class="btn-whatsapp"
-        >
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Fazer encomenda pelo WhatsApp
-        </a>
-      </div>
-
-      <div class="contato-box">
-        <h3>Entre em contato</h3>
-        <div class="contato-item">
-          <div class="contato-icon">📱</div>
-          <div class="contato-item-text">
-            <span>WhatsApp</span>
-            <a href="https://wa.me/5548999797042" target="_blank">+55 (48) 99979-7042</a>
-          </div>
-        </div>
-        <div class="contato-item">
-          <div class="contato-icon">✉️</div>
-          <div class="contato-item-text">
-            <span>E-mail</span>
-            <a href="mailto:contato@fiberemballage.com">contato@fiberemballage.com</a>
-          </div>
-        </div>
-        <div class="contato-item">
-          <div class="contato-icon">📍</div>
-          <div class="contato-item-text">
-            <span>Atendimento</span>
-            <a href="#">Online · Brasil</a>
-          </div>
-        </div>
-      </div>
+    <div class="galeria-content">
+      <a href="galeria.html" class="btn-galeria">Acessar Galeria</a>
     </div>
   </div>
 </section>
@@ -872,7 +852,7 @@
           <li>Inspirações de cores e combinações</li>
           <li>100% gratuito — sem pegadinha</li>
         </ul>
-        <a href="/ebook" class="btn-primary">Quero o e-book gratuito →</a>
+        <a href="https://www.fiberemballage.com/ebook" class="btn-primary">Quero o e-book gratuito →</a>
       </div>
     </div>
   </div>
@@ -891,7 +871,7 @@
         <a href="#sobre">Sobre Nós</a>
         <a href="#cursos">Cursos</a>
         <a href="#encomendas">Encomendas</a>
-        <a href="/ebook">E-book Grátis</a>
+        <a href="https://www.fiberemballage.com/ebook">E-book Grátis</a>
       </div>
       <div class="footer-col">
         <h4>Cursos</h4>
@@ -923,7 +903,33 @@
       document.getElementById('mobileMenu').classList.remove('open');
     }
   });
+
+  // Carousel
+  let currentSlide = 0;
+  function showSlide(index) {
+    const slides = document.querySelectorAll('#alana-carousel .carousel-item');
+    const dots = document.querySelectorAll('#alana-carousel .dot');
+    if (!slides.length) return;
+    
+    if (index >= slides.length) currentSlide = 0;
+    else if (index < 0) currentSlide = slides.length - 1;
+    else currentSlide = index;
+
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+  }
+  function moveCarousel(step) { showSlide(currentSlide + step); }
+  function setCarousel(index) { showSlide(index); }
+  
+  setInterval(() => { moveCarousel(1); }, 5000);
 </script>
 
+
+<a href="https://wa.me/5548999797042?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20os%20cursos%20Fiber%20Emballage." target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp" style="position:fixed;bottom:20px;right:20px;z-index:1000;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.25);">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.845L0 24l6.335-1.477A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm.029 21.75a9.7 9.7 0 01-4.946-1.355l-.355-.21-3.676.857.873-3.59-.232-.367A9.7 9.7 0 012.25 12C2.25 6.624 6.624 2.25 12 2.25S21.75 6.624 21.75 12 17.376 21.75 12.029 21.75zm5.345-7.27c-.292-.146-1.726-.852-1.994-.95-.267-.097-.462-.146-.657.146-.195.292-.755.95-.926 1.144-.17.195-.34.219-.632.073-.292-.146-1.233-.454-2.349-1.45-.868-.774-1.453-1.73-1.624-2.022-.17-.292-.018-.45.128-.595.146-.146.327-.38.49-.57.165-.195.219-.336.328-.56.11-.224.055-.42-.04-.566-.097-.146-.875-2.108-1.2-2.886-.317-.764-.64-.66-.876-.673-.224-.012-.48-.014-.738-.014-.258 0-.676.097-.92.49-.243.39-.93 1.135-.93 2.768 0 1.633 1.198 3.21 1.366 3.434.17.224 2.275 3.473 5.514 4.733 2.61 1.02 3.144.818 3.713.764.57-.054 1.83-.747 2.087-1.47.257-.722.257-1.34.18-1.47-.073-.122-.292-.195-.585-.34z"/></svg>
+</a>
 </body>
 </html>

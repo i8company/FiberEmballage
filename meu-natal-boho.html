@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiber Emballage — Meu Natal Boho | Curso Online</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:  #F7F0E6;
+      --sand:   #EDE0CC;
+      --tan:    #C9A97A;
+      --brown:  #8B6133;
+      --dark:   #3D2B1F;
+      --accent: #A0522D;
+      --white:  #FFFFFF;
+      --muted:  #7A6252;
+      --green:  #2D6A4F;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ─────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(61,43,31,0.97);
+      backdrop-filter: blur(10px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 68px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--tan); font-size: 1.25rem; letter-spacing: 0.05em; text-decoration: none;
+    }
+    .nav-back {
+      color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+    }
+    .nav-back:hover { color: var(--tan); }
+
+    /* ── BUTTONS ─────────────────────────────── */
+    .btn-primary {
+      display: inline-block; padding: 16px 40px;
+      background: linear-gradient(135deg, var(--accent), var(--brown));
+      color: var(--white); font-weight: 700; font-size: 1.05rem;
+      border-radius: 8px; text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-block; padding: 14px 32px;
+      border: 1.5px solid rgba(201,169,122,0.6);
+      color: var(--tan); font-weight: 500; font-size: 0.95rem;
+      border-radius: 8px; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-ghost:hover { background: rgba(201,169,122,0.1); border-color: var(--tan); }
+
+    /* ── HERO ─────────────────────────────────── */
+    #hero {
+      min-height: 92vh;
+      background: linear-gradient(150deg, var(--dark) 0%, #5C3A22 55%, var(--brown) 100%);
+      display: flex; align-items: center; justify-content: center;
+      padding: 120px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Ccircle cx='40' cy='40' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-grid {
+      position: relative; max-width: 1100px; width: 100%;
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-block; border: 1px solid rgba(201,169,122,0.5);
+      color: var(--tan); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 7px 20px; border-radius: 20px; margin-bottom: 24px;
+    }
+    #hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      color: var(--white); line-height: 1.15; margin-bottom: 20px;
+    }
+    #hero h1 em { color: var(--tan); font-style: italic; }
+    #hero .subtitle {
+      font-size: clamp(1rem, 2.2vw, 1.15rem);
+      color: rgba(255,255,255,0.8); font-weight: 300;
+      max-width: 520px; margin-bottom: 36px;
+    }
+    .hero-img {
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-img img { width: 100%; display: block; aspect-ratio: 4/5; object-fit: cover; }
+
+    /* ── SEÇÃO GENÉRICA ─────────────────────────── */
+    section.block { padding: 88px 24px; }
+    .inner { max-width: 1060px; margin: 0 auto; }
+    .label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--brown); margin-bottom: 10px; text-align: center;
+    }
+    .title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--dark); line-height: 1.2; margin-bottom: 16px; text-align: center;
+    }
+    .subtitle {
+      font-size: 1rem; color: var(--muted); line-height: 1.8;
+      max-width: 640px; margin: 0 auto 48px; text-align: center;
+    }
+    .dark-bg { background: linear-gradient(135deg, var(--dark) 0%, #5C3A22 100%); color: var(--white); }
+    .dark-bg .label { color: var(--tan); }
+    .dark-bg .title { color: var(--white); }
+    .dark-bg .subtitle { color: rgba(255,255,255,0.75); }
+    .white-bg { background: var(--white); }
+
+    /* ── O QUE É ─────────────────────────────── */
+    .oque-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+    }
+    .oque-grid img { width: 100%; border-radius: 12px; aspect-ratio: 4/3; object-fit: cover; }
+    .oque-text p { margin-bottom: 16px; color: var(--muted); }
+    .oque-text h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 16px; }
+
+    /* ── CARROSSEL DE PRODUTOS ─────────────────── */
+    .produto-carousel-wrap { position: relative; margin-bottom: 16px; }
+    .produto-carousel {
+      display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+      border-radius: 8px;
+      scrollbar-width: none; -ms-overflow-style: none;
+      background: var(--cream);
+    }
+    .produto-carousel::-webkit-scrollbar { display: none; }
+    .produto-carousel {
+      height: 360px;
+    }
+    .produto-carousel img {
+      width: 100%; height: 100%; object-fit: contain; display: block;
+      flex: 0 0 100%; scroll-snap-align: center;
+    }
+    @media (max-width: 600px) {
+      .produto-carousel { height: 280px; }
+    }
+    .produto-carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 32px; height: 32px; border: none;
+      background: transparent; color: var(--white);
+      font-size: 1.4rem; line-height: 1; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+      transition: opacity 0.2s;
+      opacity: 0.8;
+    }
+    .produto-carousel-btn:hover { opacity: 1; }
+    .produto-carousel-btn.prev { left: 8px; }
+    .produto-carousel-btn.next { right: 8px; }
+
+    /* ── GRID DE CARDS GERAL ─────────────────── */
+    .cards-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 24px;
+    }
+    .cards-grid.produtos-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 760px) {
+      .cards-grid.produtos-grid { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: var(--white); border: 1px solid var(--sand); border-radius: 12px;
+      padding: 28px 24px; text-align: center;
+    }
+    .card .icon { font-size: 2rem; margin-bottom: 14px; }
+    .card img { width: 100%; border-radius: 8px; margin-bottom: 14px; aspect-ratio: 4/3; object-fit: cover; }
+    .card h4 { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 8px; color: var(--dark); }
+    .card p { font-size: 0.9rem; color: var(--muted); }
+
+    /* ── PRODUTOS / MÓDULOS LISTA ─────────────── */
+    .modulos-list { display: flex; flex-direction: column; gap: 16px; max-width: 720px; margin: 0 auto; }
+    .modulo {
+      display: flex; gap: 18px; align-items: flex-start;
+      background: var(--white); border: 1px solid var(--sand); border-radius: 10px; padding: 20px 24px;
+    }
+    .modulo .num {
+      flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--brown)); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-weight: 700;
+    }
+    .modulo h4 { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 4px; }
+    .modulo p { font-size: 0.9rem; color: var(--muted); }
+
+    /* ── BENEFÍCIOS ─────────────────────────── */
+    .beneficios-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    @media (max-width: 760px) {
+      .beneficios-grid { grid-template-columns: 1fr; }
+    }
+    .beneficio { padding: 24px 32px; }
+    .beneficio {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px; padding: 20px;
+    }
+    .beneficio .check {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: var(--tan); color: var(--dark); display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.85rem;
+    }
+    .beneficio p { font-size: 0.92rem; color: rgba(255,255,255,0.85); }
+
+    /* ── PROFESSORA ─────────────────────────── */
+    .prof-grid {
+      display: grid; grid-template-columns: 220px 1fr; gap: 36px; align-items: center; max-width: 760px; margin: 0 auto;
+    }
+    .prof-grid img { width: 100%; border-radius: 12px; aspect-ratio: 1/1; object-fit: cover; }
+    .prof-grid h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 10px; }
+    .prof-grid p { color: var(--muted); font-size: 0.95rem; margin-bottom: 8px; }
+
+    /* ── DEPOIMENTOS ───────────────────────── */
+    .depo-carousel-wrap { position: relative; }
+    .depo-carousel {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .depo-carousel img {
+      width: 100%; height: 100%; border-radius: 10px; object-fit: contain;
+      display: block; background: var(--cream);
+    }
+    .depo-carousel { aspect-ratio: unset; }
+    .depo-carousel > img { height: 480px; }
+    @media (max-width: 760px) {
+      .depo-carousel > img { height: 400px; }
+    }
+    .depo-carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      border: none; background: transparent; color: var(--brown);
+      font-size: 1.6rem; cursor: pointer; z-index: 3; padding: 10px;
+      opacity: 0.7; transition: opacity 0.2s;
+    }
+    .depo-carousel-btn:hover { opacity: 1; }
+    .depo-carousel-btn.prev { left: -40px; }
+    .depo-carousel-btn.next { right: -40px; }
+    @media (max-width: 760px) {
+      .depo-carousel { grid-template-columns: 1fr; }
+    }
+
+    /* ── GARANTIA ───────────────────────────── */
+    .garantia-box {
+      max-width: 640px; margin: 0 auto; text-align: center;
+      background: var(--white); border: 2px solid var(--tan); border-radius: 16px; padding: 48px 32px;
+    }
+    .garantia-box .seal {
+      width: 90px; height: 90px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--tan), var(--brown));
+      color: var(--white); display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700;
+      margin: 0 auto 24px;
+    }
+    .garantia-box h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 12px; }
+    .garantia-box p { color: var(--muted); }
+
+    /* ── CTA FINAL ─────────────────────────── */
+    #cta-final {
+      background: linear-gradient(150deg, var(--dark) 0%, #5C3A22 55%, var(--brown) 100%);
+      color: var(--white); text-align: center;
+    }
+    #cta-final .title { color: var(--white); }
+    #cta-final .subtitle { color: rgba(255,255,255,0.8); }
+    .price-tag { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--tan); margin-bottom: 8px; }
+    .price-old { color: rgba(255,255,255,0.5); text-decoration: line-through; font-size: 1.1rem; margin-bottom: 4px; }
+
+    /* ── STICKY CTA MOBILE ─────────────────── */
+    .sticky-cta {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
+      background: var(--dark); padding: 12px 16px; text-align: center;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.2); display: none;
+    }
+    .sticky-cta .btn-primary { width: 100%; padding: 14px; }
+
+    /* ── FAQ ─────────────────────────────────── */
+    .faq-list { display: flex; flex-direction: column; gap: 14px; max-width: 760px; margin: 0 auto; }
+    .faq-item {
+      background: var(--white); border: 1px solid var(--sand); border-radius: 12px;
+      overflow: hidden; transition: border-color 0.2s;
+    }
+    .faq-item.open { border-color: var(--tan); }
+    .faq-question {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      width: 100%; text-align: left; cursor: pointer; border: none; background: none;
+      padding: 20px 24px; font-family: 'Playfair Display', serif; font-size: 1.05rem;
+      color: var(--dark); font-weight: 600;
+    }
+    .faq-question .plus {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: var(--cream); color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 700; transition: transform 0.25s, background 0.2s, color 0.2s;
+    }
+    .faq-item.open .faq-question .plus {
+      transform: rotate(45deg); background: var(--accent); color: var(--white);
+    }
+    .faq-answer {
+      max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+    }
+    .faq-answer-inner { padding: 0 24px 22px; color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+    .faq-answer-inner a { color: var(--accent); font-weight: 600; text-decoration: underline; }
+
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 36px; }
+      .hero-grid .subtitle { margin: 0 auto 36px; }
+      .hero-img { max-width: 380px; margin: 0 auto; }
+      .oque-grid { grid-template-columns: 1fr; }
+      .prof-grid { grid-template-columns: 1fr; text-align: center; }
+      .prof-grid img { max-width: 220px; margin: 0 auto; }
+      .sticky-cta { display: block; }
+      body { padding-bottom: 72px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Fiber Emballage</a>
+  <a href="index.html" class="nav-back">&larr; Voltar ao site</a>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge">Curso Online · Fiber Emballage</div>
+      <h1>Um <em>Natal Boho</em> feito com suas mãos — e com muita alma</h1>
+      <p class="subtitle">Aprenda a criar decorações natalinas únicas com fibras naturais: guirlandas, enfeites de árvore, arranjos de mesa e muito mais com estética boho sofisticada.</p>
+      <a href="https://pay.hotmart.com/D76693693D" target="_blank" class="btn-primary">Quero me inscrever agora →</a>
+    </div>
+    <div class="hero-img">
+      <img src="IMAGENS/meu-natal-boho-01.png" alt="Decoração natalina boho - Fiber Emballage Meu Natal Boho">
+    </div>
+  </div>
+</section>
+
+<!-- ══ O QUE É ═══════════════════════════════════ -->
+<section class="block white-bg">
+  <div class="inner">
+    <p class="label">O Que É</p>
+    <h2 class="title">Decorações natalinas com estética boho e fibras naturais</h2>
+    <div class="oque-grid">
+      <img src="IMAGENS/meu-natal-boho-01.png" alt="Decoração natalina boho">
+      <div class="oque-text">
+        <h2>Fiber Emballage — Meu Natal Boho</h2>
+        <p>O Meu Natal Boho é um curso especial de decoração natalina com estética boho — aquela combinação de natural, rústico e sofisticado que está dominando o design de interiores.</p>
+        <p>Você vai aprender a criar guirlandas, enfeites de árvore, arranjos de mesa, móbiles e muito mais, utilizando fibras naturais, tassels e elementos orgânicos com acabamento profissional.</p>
+        <p>Um Natal decorado pelas suas mãos — com peças únicas que você vai querer usar ano após ano, ou vender para quem quer um Natal diferente e cheio de personalidade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRA QUEM É ═════════════════════════════════ -->
+<section class="block white-bg">
+  <div class="inner">
+    <p class="label">Pra Quem É</p>
+    <h2 class="title">Esse curso é para você que...</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="icon">🎄</div>
+        <h4>Quem quer um Natal diferente</h4>
+        <p>Cansada das decorações industriais iguais a todas? Crie um Natal único com alma e personalidade.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🎁</div>
+        <h4>Quem quer presentear com afeto</h4>
+        <p>Presentes feitos à mão têm um valor emocional que nenhuma loja consegue oferecer — e você cria tudo.</p>
+      </div>
+      <div class="card">
+        <div class="icon">💼</div>
+        <h4>Quem quer vender na época de Natal</h4>
+        <p>Dezembro é o mês mais lucrativo do artesanato. Aprenda a criar peças exclusivas e vender com margem alta.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🌿</div>
+        <h4>Quem ama estética boho natural</h4>
+        <p>Para quem prefere o natural ao brilhante, o artesanal ao industrializado, o único ao repetido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRODUTOS — O QUE VOCÊ VAI APRENDER ═════════ -->
+<section class="block" style="background:var(--sand);">
+  <div class="inner">
+    <p class="label">Produtos</p>
+    <h2 class="title">O que você vai aprender a criar</h2>
+    <p class="subtitle">Confira algumas das peças que você vai dominar ao longo do curso.</p>
+    <div class="cards-grid produtos-grid">
+      <div class="card">
+        <div class="produto-carousel-wrap">
+          <div class="produto-carousel">
+            <img src="IMAGENS/GUIRLANDAS NATALINAS/guirlanda_natalina_1.png" alt="Guirlanda natalina 1">
+            <img src="IMAGENS/GUIRLANDAS NATALINAS/guirlanda_natalina_2.png" alt="Guirlanda natalina 2">
+          </div>
+          <button class="produto-carousel-btn prev" onclick="this.parentElement.querySelector('.produto-carousel').scrollBy({left:-this.parentElement.querySelector('.produto-carousel').clientWidth,behavior:'smooth'})">&#10094;</button>
+          <button class="produto-carousel-btn next" onclick="this.parentElement.querySelector('.produto-carousel').scrollBy({left:this.parentElement.querySelector('.produto-carousel').clientWidth,behavior:'smooth'})">&#10095;</button>
+        </div>
+        <h4>Guirlandas Natalinas</h4>
+        <p>Guirlandas autorais em fibra natural com acabamento boho sofisticado.</p>
+      </div>
+      <div class="card">
+        <div class="produto-carousel-wrap">
+          <div class="produto-carousel">
+            <img src="IMAGENS/ÁRVORE DE NATAL/arvore_natal_1.jpg" alt="Árvore de Natal 1">
+            <img src="IMAGENS/ÁRVORE DE NATAL/arvore_natal_2.jpg" alt="Árvore de Natal 2">
+            <img src="IMAGENS/ÁRVORE DE NATAL/arvore_natal_3.jpg" alt="Árvore de Natal 3">
+            <img src="IMAGENS/ÁRVORE DE NATAL/arvore_natal_4.jpg" alt="Árvore de Natal 4">
+            <img src="IMAGENS/ÁRVORE DE NATAL/arvore_natal_5.jpg" alt="Árvore de Natal 5">
+            <img src="IMAGENS/ÁRVORE DE NATAL/arvore_natal_6.png" alt="Árvore de Natal 6">
+            <img src="IMAGENS/ÁRVORE DE NATAL/arvore_natal_7.jpg" alt="Árvore de Natal 7">
+            <img src="IMAGENS/ÁRVORE DE NATAL/arvore_natal_8.jpg" alt="Árvore de Natal 8">
+          </div>
+          <button class="produto-carousel-btn prev" onclick="this.parentElement.querySelector('.produto-carousel').scrollBy({left:-this.parentElement.querySelector('.produto-carousel').clientWidth,behavior:'smooth'})">&#10094;</button>
+          <button class="produto-carousel-btn next" onclick="this.parentElement.querySelector('.produto-carousel').scrollBy({left:this.parentElement.querySelector('.produto-carousel').clientWidth,behavior:'smooth'})">&#10095;</button>
+        </div>
+        <h4>Árvores de Natal</h4>
+        <p>Árvores de Natal autorais em fibra, com acabamentos exclusivos e estética boho.</p>
+      </div>
+      <div class="card">
+        <div class="produto-carousel-wrap">
+          <div class="produto-carousel">
+            <img src="IMAGENS/ARRANJOS DE MESA/arranjos_mesa_1.jpg" alt="Arranjo de mesa 1">
+            <img src="IMAGENS/ARRANJOS DE MESA/arranjos_mesa_2.jpg" alt="Arranjo de mesa 2">
+            <img src="IMAGENS/ARRANJOS DE MESA/arranjos_mesa_3.jpg" alt="Arranjo de mesa 3">
+          </div>
+          <button class="produto-carousel-btn prev" onclick="this.parentElement.querySelector('.produto-carousel').scrollBy({left:-this.parentElement.querySelector('.produto-carousel').clientWidth,behavior:'smooth'})">&#10094;</button>
+          <button class="produto-carousel-btn next" onclick="this.parentElement.querySelector('.produto-carousel').scrollBy({left:this.parentElement.querySelector('.produto-carousel').clientWidth,behavior:'smooth'})">&#10095;</button>
+        </div>
+        <h4>Arranjos de Mesa</h4>
+        <p>Arranjos de mesa natalinos autorais em fibra, com estética boho e acabamento exclusivo.</p>
+      </div>
+      <div class="card">
+        <div class="produto-carousel-wrap">
+          <div class="produto-carousel">
+            <img src="IMAGENS/ANJIHOS/anjinhos_1.png" alt="Anjinhos 1">
+            <img src="IMAGENS/ANJIHOS/anjinhos_2.png" alt="Anjinhos 2">
+            <img src="IMAGENS/ANJIHOS/anjinhos_3.png" alt="Anjinhos 3">
+            <img src="IMAGENS/ANJIHOS/anjinhos_4.png" alt="Anjinhos 4">
+            <img src="IMAGENS/ANJIHOS/anjinhos_5.jpg" alt="Anjinhos 5">
+            <img src="IMAGENS/ANJIHOS/anjinhos_6.jpg" alt="Anjinhos 6">
+            <img src="IMAGENS/ANJIHOS/anjinhos_7.jpg" alt="Anjinhos 7">
+            <img src="IMAGENS/ANJIHOS/anjinhos_8.jpg" alt="Anjinhos 8">
+          </div>
+          <button class="produto-carousel-btn prev" onclick="this.parentElement.querySelector('.produto-carousel').scrollBy({left:-this.parentElement.querySelector('.produto-carousel').clientWidth,behavior:'smooth'})">&#10094;</button>
+          <button class="produto-carousel-btn next" onclick="this.parentElement.querySelector('.produto-carousel').scrollBy({left:this.parentElement.querySelector('.produto-carousel').clientWidth,behavior:'smooth'})">&#10095;</button>
+        </div>
+        <h4>Anjinhos</h4>
+        <p>Anjinhos artesanais em fibra, peças delicadas para enfeitar ou presentear neste Natal.</p>
+      </div>
+      <div class="card">
+        <div class="produto-carousel-wrap">
+          <div class="produto-carousel">
+            <img src="IMAGENS/PAPAI NOEL/papai_noel_1.jpg" alt="Papai Noel 1">
+            <img src="IMAGENS/PAPAI NOEL/papai_noel_2.jpg" alt="Papai Noel 2">
+            <img src="IMAGENS/PAPAI NOEL/papai_noel_3.png" alt="Papai Noel 3">
+            <img src="IMAGENS/PAPAI NOEL/papai_noel_4.png" alt="Papai Noel 4">
+            <img src="IMAGENS/PAPAI NOEL/papai_noel_5.png" alt="Papai Noel 5">
+            <img src="IMAGENS/PAPAI NOEL/papai_noel_6.png" alt="Papai Noel 6">
+          </div>
+          <button class="produto-carousel-btn prev" onclick="this.parentElement.querySelector('.produto-carousel').scrollBy({left:-this.parentElement.querySelector('.produto-carousel').clientWidth,behavior:'smooth'})">&#10094;</button>
+          <button class="produto-carousel-btn next" onclick="this.parentElement.querySelector('.produto-carousel').scrollBy({left:this.parentElement.querySelector('.produto-carousel').clientWidth,behavior:'smooth'})">&#10095;</button>
+        </div>
+        <h4>Papai Noel</h4>
+        <p>Bonecos de Papai Noel artesanais em fibra, com acabamento boho e cheios de personalidade.</p>
+      </div>
+      <div class="card">
+        <div class="produto-carousel-wrap">
+          <div class="produto-carousel">
+            <img src="IMAGENS/OVELHINHAS E PRESÉPIO/ovelhinhas_presepio_1.jpg" alt="Ovelhinhas e Presépio 1">
+            <img src="IMAGENS/OVELHINHAS E PRESÉPIO/ovelhinhas_presepio_2.jpg" alt="Ovelhinhas e Presépio 2">
+            <img src="IMAGENS/OVELHINHAS E PRESÉPIO/ovelhinhas_presepio_3.jpg" alt="Ovelhinhas e Presépio 3">
+          </div>
+          <button class="produto-carousel-btn prev" onclick="this.parentElement.querySelector('.produto-carousel').scrollBy({left:-this.parentElement.querySelector('.produto-carousel').clientWidth,behavior:'smooth'})">&#10094;</button>
+          <button class="produto-carousel-btn next" onclick="this.parentElement.querySelector('.produto-carousel').scrollBy({left:this.parentElement.querySelector('.produto-carousel').clientWidth,behavior:'smooth'})">&#10095;</button>
+        </div>
+        <h4>Ovelhinhas e Presépio</h4>
+        <p>Ovelhinhas e presépio artesanais em fibra, peças encantadoras para compor a decoração natalina.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BENEFÍCIOS ═════════════════════════════════ -->
+<section class="block dark-bg">
+  <div class="inner">
+    <p class="label">Benefícios</p>
+    <h2 class="title">Por que aprender Fiber Emballage Meu Natal Boho</h2>
+    <div class="beneficios-grid">
+      <div class="beneficio"><div class="check">✓</div><p>Decorações exclusivas, com estética boho e identidade própria.</p></div>
+      <div class="beneficio"><div class="check">✓</div><p>Dezembro é o mês mais lucrativo do artesanato — alto potencial de venda.</p></div>
+      <div class="beneficio"><div class="check">✓</div><p>Presentes feitos à mão, com valor emocional incomparável.</p></div>
+      <div class="beneficio"><div class="check">✓</div><p>Aulas no seu ritmo, com acesso vitalício.</p></div>
+      <div class="beneficio"><div class="check">✓</div><p>Suporte da professora para tirar dúvidas.</p></div>
+      <div class="beneficio"><div class="check">✓</div><p>Materiais naturais, acessíveis e fáceis de encontrar.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MÓDULOS ═══════════════════════════════════ -->
+<section class="block white-bg">
+  <div class="inner">
+    <p class="label">Módulos</p>
+    <h2 class="title">O que você vai aprender</h2>
+    <div class="modulos-list">
+      <div class="modulo">
+        <div class="num">1</div>
+        <div><h4>Comece Aqui</h4><p>Apresentação do curso; materiais e ferramentas para a estética boho natalina.</p></div>
+      </div>
+      <div class="modulo">
+        <div class="num">2</div>
+        <div><h4>Guirlandas Natalinas</h4><p>Bases, fibras e laços para guirlandas autorais.</p></div>
+      </div>
+      <div class="modulo">
+        <div class="num">3</div>
+        <div><h4>Enfeites de Árvore e Móbiles</h4><p>Enfeites, estrelas e móbiles natalinos com tassels e elementos orgânicos.</p></div>
+      </div>
+      <div class="modulo">
+        <div class="num">4</div>
+        <div><h4>Arranjos de Mesa</h4><p>Velas, galhos decorativos e tassels para composições de mesa.</p></div>
+      </div>
+      <div class="modulo">
+        <div class="num">5</div>
+        <div><h4>Meias Natalinas e Presentes</h4><p>Meias natalinas boho e embalagens de presentes com fibras naturais.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SUA PROFESSORA ═════════════════════════════ -->
+<section class="block" style="background:var(--sand);">
+  <div class="inner">
+    <p class="label">Sua Professora</p>
+    <h2 class="title">Quem vai te ensinar</h2>
+    <div class="prof-grid">
+      <img src="IMAGENS/ALANA 01.JPG" alt="Alana Morais">
+      <div>
+        <h3>Alana Morais</h3>
+        <p>Com mais de 30 anos de experiência no mundo do artesanato e Mestrado em Cultura Visual, Alana é a criadora da técnica Fiber Emballage.</p>
+        <p><em>"Qualquer pessoa com vontade de aprender pode criar peças que encantam e vendem."</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DEPOIMENTOS ════════════════════════════════ -->
+<section class="block white-bg">
+  <div class="inner">
+    <p class="label">Depoimentos</p>
+    <h2 class="title">Quem já fez, recomenda</h2>
+    <div class="depo-carousel-wrap">
+      <button class="depo-carousel-btn prev" onclick="depoMove(-1)">&#10094;</button>
+      <div class="depo-carousel">
+        <img id="depo0" alt="Depoimento de aluna">
+        <img id="depo1" alt="Depoimento de aluna">
+        <img id="depo2" alt="Depoimento de aluna">
+      </div>
+      <button class="depo-carousel-btn next" onclick="depoMove(1)">&#10095;</button>
+    </div>
+    <script>
+      const depoImgs = [
+        'DEPOIMENTOS/MNB/IMG_7101.jpg',
+        'DEPOIMENTOS/MNB/IMG_7102.jpg',
+        'DEPOIMENTOS/MNB/IMG_7103.jpg',
+        'DEPOIMENTOS/MNB/IMG_7108.jpg'
+      ];
+      let depoIndex = 0;
+      function depoRender() {
+        const n = depoImgs.length;
+        for (let i = 0; i < 3; i++) {
+          document.getElementById('depo' + i).src = depoImgs[(depoIndex + i) % n];
+        }
+      }
+      function depoMove(dir) {
+        depoIndex = (depoIndex + dir + depoImgs.length) % depoImgs.length;
+        depoRender();
+      }
+      depoRender();
+    </script>
+  </div>
+</section>
+
+<!-- ══ BÔNUS ══════════════════════════════════════ -->
+<section class="block" style="background:var(--sand);">
+  <div class="inner">
+    <p class="label">Bônus</p>
+    <h2 class="title">Você ainda recebe de bônus</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <img src="IMAGENS/BÔNUS/bonus 1.png" alt="Guia de combinações" style="width:100%;border-radius:8px;margin-bottom:12px;object-fit:cover;aspect-ratio:4/3;">
+        <h4>Guia de combinações</h4>
+        <p>Guia com paletas de cores e materiais para um Natal boho com harmonia.</p>
+      </div>
+      <div class="card">
+        <img src="IMAGENS/BÔNUS/bonus 2.png" alt="Comunidade exclusiva" style="width:100%;border-radius:8px;margin-bottom:12px;object-fit:cover;aspect-ratio:4/3;">
+        <h4>Comunidade exclusiva</h4>
+        <p>Grupo de alunas para trocar experiências, dúvidas e inspirações.</p>
+      </div>
+      <div class="card">
+        <img src="IMAGENS/BÔNUS/bonus 3.png" alt="Aula de criatividade" style="width:100%;border-radius:8px;margin-bottom:12px;object-fit:cover;aspect-ratio:4/3;">
+        <h4>Aula de criatividade</h4>
+        <p>Desenvolva seu olhar criativo e crie peças únicas com identidade própria.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GARANTIA ═══════════════════════════════════ -->
+<section class="block white-bg">
+  <div class="inner">
+    <div class="garantia-box">
+      <div class="seal">7 dias</div>
+      <h3>Garantia incondicional de 7 dias</h3>
+      <p>Se por qualquer motivo você não gostar do curso, basta solicitar o reembolso em até 7 dias após a compra — sem perguntas, sem burocracia. O risco é todo nosso.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA FINAL ══════════════════════════════════ -->
+<section class="block" id="cta-final">
+  <div class="inner">
+    <p class="label">Fiber Emballage — Meu Natal Boho</p>
+    <h2 class="title">Comece hoje a criar um Natal que encanta e vende</h2>
+    <p class="subtitle">Acesso vitalício, no seu ritmo, com suporte da professora e garantia de 7 dias.</p>
+    <a href="https://pay.hotmart.com/D76693693D" target="_blank" class="btn-primary">Quero me inscrever agora →</a>
+  </div>
+</section>
+
+<!-- ══ FAQ ═════════════════════════════════════════ -->
+<section class="block" style="background:var(--sand);">
+  <div class="inner">
+    <p class="label">FAQ</p>
+    <h2 class="title">Perguntas frequentes</h2>
+    <p class="subtitle">Tirou alguma dúvida que não está aqui? Fale com a gente pelo WhatsApp.</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Como é entregue o conteúdo do curso?</span>
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Todo o conteúdo é entregue de forma online, por meio de vídeos, materiais didáticos e recursos interativos. Você terá acesso 24 horas por dia, 7 dias por semana, para aprender no seu próprio ritmo.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Por quanto tempo tenho acesso ao curso Meu Natal Boho?</span>
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">O acesso ao curso Meu Natal Boho e a nossa comunidade no Telegram é vitalício.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Se eu não gostar, posso cancelar? Como fazer o cancelamento do curso?</span>
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Sim, se você decidir que o curso não é para você, pode solicitar o cancelamento dentro de 7 dias após a compra. Basta enviar um e-mail para nossa equipe de suporte e processaremos o cancelamento sem fazer perguntas. Queremos que você se sinta confortável com sua decisão!</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>O curso inclui suporte?</span>
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Sim, há suporte técnico durante a jornada em que você pode tirar suas dúvidas com a nossa equipe ou com outras alunas na nossa comunidade do Telegram.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Gostaria de aprender outra técnica. O que mais vocês ensinam?</span>
+          <span class="plus">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Sim, também oferecemos às nossas alunas outras técnicas em fibra: <a href="decoracao.html">Fiber Emballage</a>, <a href="acessorios-texteis.html">Acessórios Têxteis</a> e <a href="tassel.html">Tassel</a>. Ou ainda o <a href="combo.html">Combo</a> (Decoração + Acessórios) e o <a href="triplo.html">Triplo</a> (Decoração + Acessórios + Tassel) com desconto exclusivo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(other => {
+        if (other !== item) {
+          other.classList.remove('open');
+          other.querySelector('.faq-answer').style.maxHeight = null;
+        }
+      });
+      if (isOpen) {
+        item.classList.remove('open');
+        answer.style.maxHeight = null;
+      } else {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+<div class="sticky-cta">
+  <a href="https://pay.hotmart.com/D76693693D" target="_blank" class="btn-primary">Quero me inscrever →</a>
+</div>
+
+
+<a href="https://wa.me/5548999797042?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20os%20cursos%20Fiber%20Emballage." target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp" style="position:fixed;bottom:20px;right:20px;z-index:1000;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.25);">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.55 4.116 1.515 5.845L0 24l6.335-1.477A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm.029 21.75a9.7 9.7 0 01-4.946-1.355l-.355-.21-3.676.857.873-3.59-.232-.367A9.7 9.7 0 012.25 12C2.25 6.624 6.624 2.25 12 2.25S21.75 6.624 21.75 12 17.376 21.75 12.029 21.75zm5.345-7.27c-.292-.146-1.726-.852-1.994-.95-.267-.097-.462-.146-.657.146-.195.292-.755.95-.926 1.144-.17.195-.34.219-.632.073-.292-.146-1.233-.454-2.349-1.45-.868-.774-1.453-1.73-1.624-2.022-.17-.292-.018-.45.128-.595.146-.146.327-.38.49-.57.165-.195.219-.336.328-.56.11-.224.055-.42-.04-.566-.097-.146-.875-2.108-1.2-2.886-.317-.764-.64-.66-.876-.673-.224-.012-.48-.014-.738-.014-.258 0-.676.097-.92.49-.243.39-.93 1.135-.93 2.768 0 1.633 1.198 3.21 1.366 3.434.17.224 2.275 3.473 5.514 4.733 2.61 1.02 3.144.818 3.713.764.57-.054 1.83-.747 2.087-1.47.257-.722.257-1.34.18-1.47-.073-.122-.292-.195-.585-.34z"/></svg>
+</a>
+</body>
+</html>
