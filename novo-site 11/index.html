@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>daorla.art | Arte em Fibras Naturais</title>
+  <meta name="description" content="Cursos de artesanato têxtil com Alana Morais — Fiber Emballage, Decoração, Acessórios e muito mais.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── SMOOTH SCROLL ── */
+    html { scroll-behavior: smooth; }
+
+    /* ── HERO HOME ── */
+    .home-hero {
+      background: linear-gradient(160deg, var(--color-bg-primary) 55%, rgba(191,157,115,0.22) 100%);
+      padding: 140px 0 90px;
+    }
+    .home-hero-inner { display: flex; flex-wrap: wrap; gap: 56px; align-items: center; }
+    .home-hero-text { flex: 1.4; min-width: 280px; }
+    .home-hero-text .eyebrow {
+      display: inline-block; background: var(--color-white);
+      color: var(--color-accent); font-size: .72rem; font-weight: 600;
+      letter-spacing: 2.5px; text-transform: uppercase; padding: 6px 16px;
+      border-radius: 30px; margin-bottom: 22px; border: 1px solid var(--color-border);
+    }
+    .home-hero-text h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.12; margin-bottom: 20px; }
+    .home-hero-text p { font-size: 1.15rem; color: var(--color-text-secondary); max-width: 500px; line-height: 1.75; margin-bottom: 36px; }
+    .home-hero-text .btn-group { display: flex; flex-wrap: wrap; gap: 14px; }
+    .btn-outline {
+      display: inline-block; border: 2px solid var(--color-accent); color: var(--color-accent);
+      padding: 13px 32px; border-radius: 4px; font-weight: 600; font-size: 1rem;
+      transition: all .3s;
+    }
+    .btn-outline:hover { background: var(--color-accent); color: #fff; }
+    .home-hero-img { flex: 1; min-width: 260px; }
+    .home-hero-img .prof-card {
+      border-radius: 14px; overflow: hidden; position: relative;
+      box-shadow: 0 24px 60px rgba(140,78,3,.2);
+    }
+    .home-hero-img .prof-card img { width: 100%; display: block; aspect-ratio: 3/4; object-fit: cover; }
+    .home-hero-img .prof-card .overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(140,78,3,.55) 0%, transparent 55%);
+    }
+    .home-hero-img .prof-card .caption {
+      position: absolute; bottom: 22px; left: 24px; color: #fff; z-index: 1;
+    }
+    .home-hero-img .prof-card .caption strong { font-family: var(--font-heading); font-size: 1.3rem; display: block; }
+    .home-hero-img .prof-card .caption span { font-size: .82rem; opacity: .85; }
+
+    /* ── SEÇÕES GERAIS ── */
+    .home-section { padding: 90px 0; }
+    .home-section.bg-alt { background: var(--color-bg-primary); }
+    .home-section.bg-white { background: var(--color-white); }
+
+    /* ── QUEM SOMOS ── */
+    .quem-somos-inner { display: flex; flex-wrap: wrap; gap: 60px; align-items: center; }
+    .quem-somos-img { flex: 1; min-width: 240px; }
+    .quem-somos-img svg { width: 100%; border-radius: 12px; display: block; }
+    .quem-somos-txt { flex: 1.6; min-width: 280px; }
+    .quem-somos-txt h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); margin-bottom: 20px; }
+    .quem-somos-txt p { color: #6b5a4a; line-height: 1.85; margin-bottom: 14px; }
+    .quem-somos-txt .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .quem-somos-txt .tag {
+      background: var(--color-bg-primary); border: 1px solid var(--color-border);
+      padding: 7px 16px; border-radius: 30px; font-size: .83rem; font-weight: 500;
+    }
+
+    /* ── PLAYLIST ── */
+    .playlist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; margin-top: 50px; }
+    .video-card {
+      background: var(--color-white); border-radius: 10px; overflow: hidden;
+      box-shadow: 0 2px 14px rgba(0,0,0,.06); transition: transform .3s;
+    }
+    .video-card:hover { transform: translateY(-4px); }
+    .video-thumb {
+      width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, #3d2000, #8C4E03);
+      display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;
+    }
+    .video-thumb .play-ico {
+      width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,.92);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,.25); transition: transform .3s;
+    }
+    .video-thumb:hover .play-ico { transform: scale(1.1); }
+    .video-thumb .play-ico svg { margin-left: 4px; }
+    .video-card .info { padding: 18px 20px; }
+    .video-card .info h3 { font-size: 1rem; margin-bottom: 6px; }
+    .video-card .info p { font-size: .85rem; color: var(--color-text-secondary); margin: 0; line-height: 1.6; }
+    .playlist-cta { text-align: center; margin-top: 40px; }
+
+    /* ── ALUNOS ── */
+    .alunos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px; margin-top: 50px; }
+    .dep-card-home {
+      background: var(--color-white); border-radius: 10px; padding: 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .dep-card-home .stars { color: var(--color-accent); letter-spacing: 3px; margin-bottom: 14px; font-size: .95rem; }
+    .dep-card-home blockquote { font-size: .9rem; color: #6b5a4a; line-height: 1.75; margin: 0 0 20px; font-style: italic; }
+    .dep-card-home .autor { display: flex; align-items: center; gap: 12px; }
+    .dep-card-home .av {
+      width: 44px; height: 44px; border-radius: 50%; background: var(--color-border);
+      overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    }
+    .dep-card-home .av svg { width: 100%; height: 100%; }
+    .dep-card-home .nome { font-size: .875rem; font-weight: 600; display: block; }
+    .dep-card-home .local { font-size: .78rem; color: var(--color-text-secondary); }
+
+    /* ── REDES SOCIAIS ── */
+    .redes-grid { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 48px; justify-content: center; }
+    .rede-card {
+      display: flex; align-items: center; gap: 16px; background: var(--color-bg-primary);
+      border: 1.5px solid var(--color-border); border-radius: 12px; padding: 18px 24px;
+      text-decoration: none; transition: all .3s; min-width: 220px; flex: 1; max-width: 280px;
+    }
+    .rede-card:hover { border-color: var(--color-accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(166,109,3,.14); }
+    .rede-icon {
+      width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
+    }
+    .rede-icon svg { width: 28px; height: 28px; }
+    .rede-info strong { display: block; font-size: .95rem; color: var(--color-text-main); margin-bottom: 2px; }
+    .rede-info span { font-size: .8rem; color: var(--color-text-secondary); }
+
+    /* ── CONTATO / NEWSLETTER ── */
+    .contato-inner { display: flex; flex-wrap: wrap; gap: 56px; }
+    .contato-redes { flex: 1; min-width: 260px; }
+    .contato-redes h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); margin-bottom: 16px; }
+    .contato-redes p { color: #6b5a4a; line-height: 1.8; margin-bottom: 30px; }
+    .contato-form { flex: 1; min-width: 280px; }
+    .newsletter-box {
+      background: var(--color-bg-primary); border-radius: 14px; padding: 44px 38px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.05);
+    }
+    .newsletter-box h2 { font-size: clamp(1.5rem, 2.5vw, 1.9rem); margin-bottom: 10px; }
+    .newsletter-box p { color: #6b5a4a; font-size: .95rem; margin-bottom: 28px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: .88rem; font-weight: 600; margin-bottom: 6px; color: var(--color-text-main); }
+    .form-group input {
+      width: 100%; padding: 12px 16px; border: 1.5px solid var(--color-border); border-radius: 6px;
+      font-family: var(--font-body); font-size: 1rem; outline: none; transition: border-color .3s;
+      background: var(--color-white); color: var(--color-text-main);
+    }
+    .form-group input:focus { border-color: var(--color-accent); }
+
+    /* ── SOCIAL LINKS FOOTER (logos) ── */
+    .social-links-logos { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+    .social-links-logos a {
+      width: 38px; height: 38px; border-radius: 8px; background: rgba(255,255,255,.12);
+      display: flex; align-items: center; justify-content: center; transition: background .3s;
+      color: #fff;
+    }
+    .social-links-logos a:hover { background: var(--color-accent); }
+    .social-links-logos svg { width: 18px; height: 18px; fill: currentColor; }
+
+    @media (max-width: 768px) {
+      .home-hero-inner, .quem-somos-inner, .contato-inner { flex-direction: column; }
+      .home-hero-img { max-width: 340px; }
+      .redes-grid { flex-direction: column; }
+      .rede-card { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container header-container">
+    <a href="index.html" class="logo" style="display:flex;align-items:center;gap:10px;">
+        <img src="img/icone_logo.png" alt="daorla.art ícone" style="height:32px;width:auto;filter:brightness(0) invert(1);opacity:.9;">
+        <span>daorla.art</span>
+      </a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Cursos ▼</a>
+          <ul class="dropdown-menu">
+            <li><a href="cursos/decoracao.html">Decoração</a></li>
+            <li><a href="cursos/acessorios.html">Acessórios Têxteis</a></li>
+            <li><a href="cursos/tassel.html">Tassel</a></li>
+            <li><a href="cursos/combo.html">Combo</a></li>
+            <li><a href="cursos/triplo.html">Triplo</a></li>
+            <li><a href="cursos/natal.html">Meu Natal Boho</a></li>
+          </ul>
+        </li>
+        <li><a href="https://fiberemballage.com/ebook/" target="_blank" rel="noopener">Ebook</a></li>
+        <li><a href="https://fiberemballage.com/galeria" target="_blank" rel="noopener">Galeria</a></li>
+      </ul>
+    </nav>
+    <div class="menu-toggle"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<main>
+
+<!-- ① HERO -->
+<style>
+@keyframes bounce {
+  0%,100%{transform:translateX(-50%) translateY(0)}
+  50%{transform:translateX(-50%) translateY(10px)}
+}
+@keyframes floatIn {
+  from{opacity:0;transform:translateY(28px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.hero-line1{animation:floatIn .9s ease both .1s}
+.hero-line2{animation:floatIn .9s ease both .3s}
+.hero-line3{animation:floatIn .9s ease both .5s}
+.hero-ctas {animation:floatIn .9s ease both .7s}
+</style>
+
+<section class="home-hero fade-in" style="
+  position:relative;
+  overflow:hidden;
+  background: #1a0d00;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+">
+
+  <!-- ── FOTO REAL DO COCAR COMO FUNDO ── -->
+  <div style="position:absolute;inset:0;pointer-events:none;">
+    <!-- Foto real do cocar como background -->
+    <img src="img/cocar_foto.jpg"
+         alt="Cocar artesanal em fibras naturais"
+         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:brightness(.52) saturate(1.2) contrast(1.05);">
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,5,0,.85) 0%,rgba(10,5,0,.6) 45%,rgba(10,5,0,.25) 100%);"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,5,0,.5) 0%,transparent 40%);"></div>
+  </div>
+
+  <!-- ── CONTEÚDO DO HERO ── -->
+  <div class="container" style="position:relative;z-index:2;padding-top:150px;padding-bottom:110px;">
+    <div style="max-width:580px;">
+
+      <!-- nome da marca + slogan -->
+      <p class="hero-line1" style="
+        font-family:var(--font-heading);
+        font-size:clamp(2.6rem,6vw,4.2rem);
+        font-weight:700;
+        color:#F5DEB3;
+        line-height:1.05;
+        margin:0 0 10px;
+        letter-spacing:-1px;
+        text-shadow:0 2px 30px rgba(0,0,0,.5);
+      ">daorla.art</p>
+
+      <p class="hero-line2" style="
+        font-family:var(--font-heading);
+        font-size:clamp(1.1rem,2.2vw,1.5rem);
+        color:#D4921A;
+        font-style:italic;
+        font-weight:400;
+        margin:0 0 28px;
+        letter-spacing:.5px;
+      ">Artesanato Têxtil</p>
+
+      <p class="hero-line3" style="
+        font-size:clamp(.95rem,1.8vw,1.1rem);
+        color:rgba(245,222,179,.8);
+        line-height:1.8;
+        margin-bottom:40px;
+        max-width:480px;
+      ">Arte em fibras naturais que transforma materiais simples em peças únicas</p>
+
+      <div class="hero-ctas" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
+        <a href="cursos/triplo.html" class="btn" style="
+          padding:15px 38px;font-size:1rem;
+          background:var(--color-accent);color:#fff;
+          box-shadow:0 6px 24px rgba(201,134,26,.4);
+          border:none;
+        ">✦ Conheça os cursos</a>
+        <a href="#quem-somos" style="
+          display:inline-flex;align-items:center;gap:8px;
+          color:rgba(245,222,179,.75);font-size:.95rem;font-weight:500;
+          text-decoration:none;transition:color .3s;
+        ">Sobre a daorla <span>↓</span></a>
+      </div></div>
+  </div>
+
+  <!-- seta -->
+  <a href="#quem-somos" style="
+    position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+    color:rgba(201,134,26,.55);font-size:1.4rem;
+    animation:bounce 2.2s ease-in-out infinite;text-decoration:none;
+  ">↓</a>
+</section>
+</style>
+
+<!-- ② QUEM SOMOS -->
+<section id="quem-somos" class="home-section bg-white fade-in">
+  <div class="container">
+    <div class="separator"></div>
+    <span style="display:inline-block;background:var(--color-bg-primary);color:var(--color-accent);font-size:.72rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;padding:6px 16px;border-radius:30px;margin-bottom:36px;border:1px solid var(--color-border);">Nossa história</span>
+    <h2 style="font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:48px;">Quem somos</h2>
+
+    <!-- ── bloco daorla: logo + texto ── -->
+    <div style="display:flex;flex-wrap:wrap;gap:48px;align-items:center;margin-bottom:56px;padding-bottom:48px;border-bottom:1px solid var(--color-border);">
+      <!-- logo -->
+      <div style="flex:0 0 auto;width:clamp(140px,22vw,220px);">
+        <img src="img/logo_feed.jpg" alt="daorla.art logo"
+             style="width:100%;border-radius:12px;display:block;box-shadow:0 4px 20px rgba(0,0,0,.08);"
+             onerror="this.style.display='none'">
+      </div>
+      <!-- texto -->
+      <div style="flex:1;min-width:260px;">
+        <h3 style="font-size:1.2rem;color:var(--color-accent);margin-bottom:14px;font-family:var(--font-heading);">daorla.art</h3>
+        <p style="color:#6b5a4a;line-height:1.85;margin-bottom:14px;">A <strong>daorla.art</strong> nasceu da convicção de que o artesanato têxtil vai muito além do hobby. É uma linguagem visual poderosa, capaz de gerar identidade, renda e propósito. Somos uma escola online especializada em Fiber Emballage, uma técnica de envolvimento de fibras naturais que permite criar desde colares, guirlandas, brincos, pulseiras, cocares até esculturas de parede e peças decorativas únicas.</p>
+        <p style="color:#6b5a4a;line-height:1.85;">Nossa missão é democratizar o acesso a um artesanato sofisticado e autoral. Acreditamos que com <strong>uma técnica</strong>, você pode criar <strong>vários produtos</strong>! Transforme sua habilidade em uma marca com identidade e faturamento real.</p>
+      </div>
+    </div>
+
+    <!-- ── bloco Alana: texto + foto ── -->
+    <div style="display:flex;flex-wrap:wrap;gap:48px;align-items:center;margin-bottom:40px;">
+      <!-- texto -->
+      <div style="flex:1.5;min-width:260px;order:1;">
+        <h3 style="font-size:1.2rem;color:var(--color-accent);margin-bottom:4px;font-family:var(--font-heading);">Alana Morais</h3>
+        <p style="font-size:.82rem;color:var(--color-text-secondary);letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;font-weight:500;">Mestre em Cultura Visual</p>
+        <p style="color:#6b5a4a;line-height:1.85;margin-bottom:14px;">Uma vida dedicada às artes e aos trabalhos manuais. Alana Morais atravessou mais de três décadas criando, ensinando e pesquisando o artesanato têxtil com profundidade acadêmica e sensibilidade artística. Participou de exposições renomadas, integrou projetos na <em>Casa Cor</em> e foi proprietária de uma loja física que representava artesãos locais.</p>
+        <p style="color:#6b5a4a;line-height:1.85;">Hoje, ela transmite seu método exclusivo para alunas de todo o Brasil — ensinando não apenas a técnica, mas como transformar o valor intangível do fazer manual em um negócio elegante, autoral e sustentável.</p>
+      </div>
+      <!-- foto -->
+      <div style="flex:0 0 auto;width:clamp(200px,28vw,300px);order:2;">
+        <div style="border-radius:12px;overflow:hidden;box-shadow:0 10px 40px rgba(140,78,3,.18);position:relative;">
+          <img src="img/alana_foto.jpg" alt="Alana Morais"
+               style="width:100%;display:block;aspect-ratio:3/4;object-fit:cover;object-position:top;"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <div style="display:none;width:100%;aspect-ratio:3/4;background:linear-gradient(160deg,#BF9D73,#8C4E03);border-radius:12px;"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(140,78,3,.7),transparent);padding:20px 16px 16px;">
+            <span style="color:#fff;font-family:var(--font-heading);font-size:1rem;display:block;">Alana Morais</span>
+            <span style="color:rgba(255,255,255,.75);font-size:.78rem;">Fundadora · daorla.art</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:8px;">
+      <a href="cursos/triplo.html" class="btn" style="padding:13px 34px;">Conheça nossos cursos</a>
+    </div>
+  </div>
+</section>
+
+<!-- ③ PLAYLIST -->
+<section id="playlist" class="home-section bg-alt fade-in">
+  <div class="container">
+    <div class="separator"></div>
+    <h2 class="section-title">Veja a técnica em ação</h2>
+    <p class="section-subtitle">Assista ao nosso conteúdo e se inspire antes de começar.</p>
+
+    <div style="
+      margin-top:48px;
+      background:var(--color-white);
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 8px 40px rgba(0,0,0,.08);
+      border:1px solid var(--color-border);
+    ">
+      <!-- Player de vídeo nativo — substitua o src quando tiver o arquivo -->
+      <!-- OPÇÃO A: vídeo .mp4 nativo (melhor conversão) -->
+      <div style="position:relative;aspect-ratio:16/9;background:#0d0600;">
+
+        <!-- Placeholder até o vídeo chegar — link para YouTube -->
+        <a href="https://www.youtube.com/@Alanaloboartesanato" target="_blank" rel="noopener"
+           style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-decoration:none;background:linear-gradient(135deg,#1a0800,#3d1800);">
+          <!-- foto de fundo desfocada -->
+          <img src="img/cocar_foto.jpg" alt=""
+               style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.25;filter:blur(3px);">
+          <div style="position:relative;z-index:1;text-align:center;">
+            <div style="width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 6px 24px rgba(0,0,0,.3);">
+              <svg width="28" height="28" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="#A66D03"/></svg>
+            </div>
+            <p style="color:#F5DEB3;font-family:var(--font-heading);font-size:1.3rem;margin:0 0 6px;">Assista no YouTube</p>
+            <p style="color:rgba(245,222,179,.65);font-size:.88rem;margin:0;">@Alanaloboartesanato · clique para assistir</p>
+          </div>
+        </a>
+
+        <!-- ↓↓↓ QUANDO TIVER O ARQUIVO DE VÍDEO: remova o <a> acima e descomente isso:
+        <video controls playsinline preload="metadata" poster="img/cocar_foto.jpg"
+               style="width:100%;height:100%;object-fit:cover;">
+          <source src="video/apresentacao.mp4" type="video/mp4">
+        </video>
+        -->
+      </div>
+
+      <!-- Rodapé do player -->
+      <div style="padding:24px 28px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;border-top:1px solid var(--color-border);">
+        <div style="flex:1;min-width:200px;">
+          <h3 style="font-size:1.1rem;margin-bottom:4px;">Arte em Fibras Naturais</h3>
+          <p style="font-size:.88rem;color:var(--color-text-secondary);margin:0;">Fiber Emballage com Alana Morais — daorla.art</p>
+        </div>
+        <div style="display:flex;gap:12px;flex-shrink:0;">
+          <a href="https://www.youtube.com/@Alanaloboartesanato" target="_blank" rel="noopener"
+             class="btn-outline" style="padding:10px 22px;font-size:.88rem;">YouTube →</a>
+          <a href="https://www.tiktok.com/@artestexteis" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border:2px solid var(--color-border);border-radius:4px;font-size:.88rem;font-weight:600;color:var(--color-text-main);transition:all .3s;text-decoration:none;"
+             onmouseover="this.style.borderColor='var(--color-accent)'" onmouseout="this.style.borderColor='var(--color-border)'">TikTok →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ④ ALUNOS -->
+<section id="alunos" class="home-section bg-white fade-in">
+  <div class="container">
+    <div class="separator"></div>
+    <h2 class="section-title">O que nossas alunas estão criando</h2>
+    <p class="section-subtitle">Prints reais do nosso grupo no Telegram — peças feitas pelas alunas após o curso.</p>
+
+    <style>
+      .dep-tg-home-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+        margin-top: 48px;
+      }
+      .dep-tg-home-card {
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,.08);
+        background: #1a1a2e;
+        transition: transform .3s, box-shadow .3s;
+        border: 1px solid rgba(166,109,3,.15);
+      }
+      .dep-tg-home-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 36px rgba(166,109,3,.16);
+      }
+      /* barra Telegram topo */
+      .dep-tg-bar {
+        background: linear-gradient(90deg, #1d2f3f 0%, #232e3c 100%);
+        padding: 9px 14px;
+        display: flex; align-items: center; gap: 8px;
+      }
+      .dep-tg-bar-dot { width: 7px; height: 7px; border-radius: 50%; }
+      .dep-tg-bar-label { font-size: .66rem; color: rgba(255,255,255,.45); letter-spacing: 1px; text-transform: uppercase; margin-left: 2px; }
+      /* screenshot da mensagem */
+      .dep-screenshot {
+        width: 100%;
+        display: block;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        object-position: top;
+      }
+      /* legenda extraída */
+      .dep-caption {
+        background: #0d1117;
+        padding: 16px 18px;
+        border-top: 1px solid rgba(166,109,3,.2);
+      }
+      .dep-caption .dep-quote {
+        font-size: .88rem;
+        color: rgba(255,255,255,.82);
+        line-height: 1.7;
+        font-style: italic;
+        margin: 0 0 10px;
+      }
+      .dep-caption .dep-meta {
+        display: flex; align-items: center; gap: 8px;
+      }
+      .dep-caption .dep-badge {
+        font-size: .68rem; font-weight: 600;
+        color: #D4921A; letter-spacing: .5px;
+        background: rgba(212,146,26,.12);
+        padding: 3px 10px; border-radius: 12px;
+      }
+      .dep-caption .dep-reactions {
+        font-size: .8rem; color: rgba(255,255,255,.4);
+        margin-left: auto;
+      }
+      /* card largo — ocupa 2 colunas quando há espaço */
+      .dep-tg-home-card.wide {
+        grid-column: span 2;
+      }
+      @media (max-width: 680px) {
+        .dep-tg-home-card.wide { grid-column: span 1; }
+      }
+    </style>
+
+    <div class="dep-tg-home-grid">
+
+      <!-- Card 1: cestaria laranja + depoimento -->
+      <div class="dep-tg-home-card">
+        <div class="dep-tg-bar">
+          <div class="dep-tg-bar-dot" style="background:#4ade80;"></div>
+          <div class="dep-tg-bar-dot" style="background:#facc15;margin-left:-1px;"></div>
+          <span class="dep-tg-bar-label">Grupo Fiber Emballage · Telegram</span>
+        </div>
+        <img class="dep-screenshot"
+             src="img/dep_telegram_1.jpg"
+             alt="Aluna mostrando sua primeiro trabalho em cestaria no grupo do Telegram"
+             loading="lazy">
+        <div class="dep-caption">
+          <p class="dep-quote">"Olá colegas, meu primeiro trabalho em cestaria.... 😊❤️😘 Agradeço muito os ensinamentos de nossa professora, sabe passar com perfeição suas aulas... 👍❤️🙏"</p>
+          <div class="dep-meta">
+            <span class="dep-badge">✓ Aluna verificada</span>
+            <span class="dep-reactions">❤️ 5 &nbsp;🔥 1 &nbsp;🤩 1 &nbsp;👏 1</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: bolsa fibra no mar -->
+      <div class="dep-tg-home-card">
+        <div class="dep-tg-bar">
+          <div class="dep-tg-bar-dot" style="background:#4ade80;"></div>
+          <div class="dep-tg-bar-dot" style="background:#facc15;margin-left:-1px;"></div>
+          <span class="dep-tg-bar-label">Grupo Fiber Emballage · Telegram</span>
+        </div>
+        <img class="dep-screenshot"
+             src="img/dep_telegram_2.jpg"
+             alt="Aluna exibindo bolsa artesanal feita após o curso da prof. Alana"
+             loading="lazy">
+        <div class="dep-caption">
+          <p class="dep-quote">"Usei para compor meu look essa bolsa, fruto do aprendizado de prof Alana!!"</p>
+          <div class="dep-meta">
+            <span class="dep-badge">✓ Aluna verificada</span>
+            <span class="dep-reactions">❤️ 4 &nbsp;🤩 3 &nbsp;🔥 1</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: mandala + cocar + texto transição de carreira — WIDE -->
+      <div class="dep-tg-home-card wide">
+        <div class="dep-tg-bar">
+          <div class="dep-tg-bar-dot" style="background:#4ade80;"></div>
+          <div class="dep-tg-bar-dot" style="background:#facc15;margin-left:-1px;"></div>
+          <span class="dep-tg-bar-label">Grupo Fiber Emballage · Telegram</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;">
+          <!-- screenshot -->
+          <img src="img/dep_telegram_3.jpg"
+               alt="Aluna em transição de carreira compartilhando cocar e relato no grupo"
+               loading="lazy"
+               style="flex:1;min-width:200px;max-width:360px;object-fit:cover;object-position:top;display:block;">
+          <!-- conteúdo textual extra -->
+          <div style="flex:1;min-width:220px;background:#0d1117;padding:28px 24px;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+            <p style="color:rgba(255,255,255,.82);font-size:.92rem;line-height:1.75;font-style:italic;">"Acabei!!! O que vcs acham?? 🧡 Meninas, eu estou em transição de carreira. Tentando deixar de vez o audiovisual e me dedicar totalmente ao artesanato."</p>
+            <p style="color:rgba(255,255,255,.65);font-size:.88rem;line-height:1.7;">"Fiz uma bolsa em macrame e saí com ela, voltei com duas encomendas... assim como o brinco de coral."</p>
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+              <span style="font-size:.68rem;font-weight:600;color:#D4921A;background:rgba(212,146,26,.12);padding:3px 10px;border-radius:12px;">✓ Aluna verificada</span>
+              <span style="font-size:.78rem;color:rgba(255,255,255,.35);">❤️ 11 &nbsp;🤩 1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: mandala 1 de novembro -->
+      <div class="dep-tg-home-card">
+        <div class="dep-tg-bar">
+          <div class="dep-tg-bar-dot" style="background:#4ade80;"></div>
+          <div class="dep-tg-bar-dot" style="background:#facc15;margin-left:-1px;"></div>
+          <span class="dep-tg-bar-label">Grupo Fiber Emballage · Telegram</span>
+        </div>
+        <img class="dep-screenshot"
+             src="img/dep_telegram_4.jpg"
+             alt="Mandala têxtil laranja e branco feita por aluna em novembro de 2025"
+             loading="lazy">
+        <div class="dep-caption">
+          <p class="dep-quote">Mandala em Fiber Emballage — tons terracota e off-white. Compartilhada em 1 de novembro de 2025.</p>
+          <div class="dep-meta">
+            <span class="dep-badge">✓ Aluna verificada</span>
+            <span class="dep-reactions">❤️ 4</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ⑤ REDES SOCIAIS + CONTATO -->
+<section id="contato" class="home-section bg-alt fade-in">
+  <div class="container">
+    <div class="separator"></div>
+    <div class="contato-inner">
+
+      <div class="contato-redes">
+        <h2>Nossas Redes Sociais</h2>
+        <p>Acompanhe o dia a dia do ateliê, dicas de técnica, inspirações e os bastidores da daorla.art.</p>
+        <div class="redes-grid">
+
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/daorla.art/" target="_blank" rel="noopener" class="rede-card">
+            <div class="rede-icon" style="background:#f09433;background:linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);">
+              <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </div>
+            <div class="rede-info">
+              <strong>Instagram</strong>
+              <span>@daorla.art</span>
+            </div>
+          </a>
+
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@Alanaloboartesanato" target="_blank" rel="noopener" class="rede-card">
+            <div class="rede-icon" style="background:#FF0000;">
+              <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+              </svg>
+            </div>
+            <div class="rede-info">
+              <strong>YouTube</strong>
+              <span>@Alanaloboartesanato</span>
+            </div>
+          </a>
+
+          <!-- TikTok -->
+          <a href="https://www.tiktok.com/@artestexteis" target="_blank" rel="noopener" class="rede-card">
+            <div class="rede-icon" style="background:#000;">
+              <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.78a4.85 4.85 0 01-1.01-.09z"/>
+              </svg>
+            </div>
+            <div class="rede-info">
+              <strong>TikTok</strong>
+              <span>@artestexteis</span>
+            </div>
+          </a>
+
+          <!-- Pinterest -->
+          <a href="https://br.pinterest.com/daorlaart/" target="_blank" rel="noopener" class="rede-card">
+            <div class="rede-icon" style="background:#E60023;">
+              <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/>
+              </svg>
+            </div>
+            <div class="rede-info">
+              <strong>Pinterest</strong>
+              <span>daorlaart</span>
+            </div>
+          </a>
+
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/artestexteis" target="_blank" rel="noopener" class="rede-card">
+            <div class="rede-icon" style="background:#1877F2;">
+              <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </div>
+            <div class="rede-info">
+              <strong>Facebook</strong>
+              <span>artestexteis</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+      <div class="contato-form">
+        <div class="newsletter-box">
+          <h2>Receba novidades</h2>
+          <p>Inscreva-se para ser a primeira a saber sobre novas turmas, conteúdos exclusivos e promoções especiais.</p>
+          <form action="#" method="POST">
+            <div class="form-group">
+              <label for="nome">Nome Completo</label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="Seu melhor e-mail" required>
+            </div>
+            <button type="submit" class="btn" style="width:100%;margin-top:8px;padding:14px 0;">
+              Quero receber novidades
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- RODAPÉ -->
+<footer>
+  <div class="container">
+    <div class="footer-container">
+      <div class="footer-col footer-brand">
+        <a href="index.html" class="footer-logo">daorla.art</a>
+        <p>Arte em Fibras Naturais.<br>Transformando habilidades em negócio.</p>
+        <!-- logos das redes sociais no rodapé -->
+        <div class="social-links-logos">
+          <a href="https://www.instagram.com/daorla.art/" target="_blank" rel="noopener" title="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@Alanaloboartesanato" target="_blank" rel="noopener" title="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@artestexteis" target="_blank" rel="noopener" title="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.78a4.85 4.85 0 01-1.01-.09z"/></svg>
+          </a>
+          <a href="https://br.pinterest.com/daorlaart/" target="_blank" rel="noopener" title="Pinterest">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/artestexteis" target="_blank" rel="noopener" title="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul class="footer-links">
+          <li><a href="#quem-somos">Quem Somos</a></li>
+          <li><a href="#playlist">Playlist</a></li>
+          <li><a href="#alunos">Alunos</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li><a href="https://fiberemballage.com/ebook/" target="_blank" rel="noopener">Ebook</a></li>
+          <li><a href="https://fiberemballage.com/galeria" target="_blank" rel="noopener">Galeria</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Nossos Cursos</h4>
+        <ul class="footer-links">
+          <li><a href="cursos/triplo.html">Combo Triplo (Melhor Custo)</a></li>
+          <li><a href="cursos/combo.html">Combo Decoração + Acessórios</a></li>
+          <li><a href="cursos/decoracao.html">Decoração</a></li>
+          <li><a href="cursos/acessorios.html">Acessórios Têxteis</a></li>
+          <li><a href="cursos/tassel.html">Tassel</a></li>
+          <li><a href="cursos/natal.html">Meu Natal Boho</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Daorla.art — Todos os direitos reservados</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
