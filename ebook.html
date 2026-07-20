@@ -13,6 +13,7 @@
   <title>Dossiê Fios & Fibras Gratuito | Fiber Emballage · Alana Morais</title>
   <meta name="description" content="Baixe grátis o Dossiê Fios & Fibras: aprenda a diferenciar fibras naturais, sintéticas e mistas, decifre etiquetas e escolha os fios certos para cada projeto.">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -507,6 +508,54 @@
     }
     footer a { color: var(--tan); text-decoration: none; }
 
+    /* ── BREVO FORM OVERRIDES ── */
+    .sib-form { background-color: transparent !important; text-align: left !important; padding: 0 !important; }
+    #sib-form-container { display: flex; flex-direction: column; gap: 0; }
+    #sib-container {
+      max-width: 100% !important;
+      background-color: rgba(255,255,255,0.07) !important;
+      border: 1px solid rgba(255,255,255,0.12) !important;
+      border-radius: 16px !important;
+      padding: 4px 4px !important;
+    }
+    #sib-form .input {
+      font-family: 'Inter', sans-serif !important;
+      border-radius: 8px !important;
+      border: 1.5px solid rgba(255,255,255,0.15) !important;
+      padding: 11px 14px !important;
+      font-size: 0.9rem !important;
+      color: #3D2B1F !important;
+      background: #FFFFFF !important;
+      outline: none !important;
+    }
+    #sib-form .input:focus {
+      border-color: #C9A97A !important;
+      box-shadow: 0 0 0 3px rgba(201,169,122,0.2) !important;
+    }
+    #sib-form .input::placeholder { color: #b0a090 !important; }
+    #sib-form select.input { color: #3D2B1F !important; background: #FFFFFF !important; }
+    #sib-form .sib-form-block__button {
+      background: linear-gradient(135deg, #A0522D 0%, #8B6133 100%) !important;
+      border-radius: 8px !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 0.95rem !important;
+      font-weight: 600 !important;
+      padding: 13px 16px !important;
+      width: 100% !important;
+      letter-spacing: 0.02em !important;
+      color: #FFFFFF !important;
+      cursor: pointer !important;
+      border: none !important;
+      transition: opacity 0.2s, transform 0.15s !important;
+    }
+    #sib-form .sib-form-block__button:hover { opacity: 0.92 !important; transform: translateY(-1px) !important; }
+    #sib-form .sib-form-block p { font-size: 0.82rem; color: rgba(255,255,255,0.65); margin-bottom: 4px; }
+    .sib-form-message-panel { border-radius: 8px !important; max-width: 100% !important; margin-bottom: 8px; }
+    .entry__error { font-size: 0.78rem !important; border-radius: 6px !important; }
+    .sib-sms-input-wrapper { gap: 6px; }
+    .sib-sms-input { gap: 6px !important; }
+    #sib-form .form__entry { margin: 0; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 800px) {
       .hero { padding: 56px 24px 64px; }
@@ -546,25 +595,92 @@
         <span class="hero-tag">🏷️ Como <strong>ler etiquetas</strong></span>
         <span class="hero-tag">✨ <strong>100% gratuito</strong></span>
       </div>
-      <div class="hero-form">
-        <p>Preencha abaixo e receba o dossiê no seu e-mail:</p>
-        <form onsubmit="handleSubmit(event)">
-          <div class="form-group">
-            <input type="text" id="name" placeholder="Seu nome" required />
+      <!-- Brevo Form -->
+      <div class="sib-form">
+        <div id="sib-form-container" class="sib-form-container">
+          <div id="error-message" class="sib-form-message-panel" style="font-size:14px;text-align:left;color:#661d1d;background-color:#ffeded;border-color:#ff4949;">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+              <span class="sib-form-message-panel__inner-text">Sua assinatura não pôde ser validada.</span>
+            </div>
           </div>
-          <div class="form-group">
-            <input type="email" id="email" placeholder="Seu melhor e-mail" required />
+          <div id="success-message" class="sib-form-message-panel" style="font-size:14px;text-align:left;color:#085229;background-color:#e7faf0;border-color:#13ce66;">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+              <span class="sib-form-message-panel__inner-text">Você fez sua assinatura com sucesso. 🧵</span>
+            </div>
           </div>
-          <div class="form-group">
-            <input type="tel" id="phone" placeholder="Seu WhatsApp (com DDD)" />
+          <div id="sib-container" class="sib-container--large sib-container--vertical" style="direction:ltr">
+            <form id="sib-form" method="POST" action="https://d4596924.sibforms.com/serve/MUIFAIIsswyFm-Z40oB8CFgb3jYFP04mDJtaC6Dv06G9tDyxLX1qXapaQWSyXBrjjwN3lnSS-heR9MWUlXjf1Up9ovRdz1IOp7-43XAmY7-X7GFFZZvy9YEGdgqvywD6V6_hkBOVafSbejRoRWrFcXdBusYhdlsstQOnRw93fylBI5IZAiE7AUNkYLrzkSSttVhNFOU_9LLZmNc06g==" data-type="subscription">
+              <div style="padding:6px 0;">
+                <div class="sib-form-block" style="text-align:center;color:#fcfdff;background-color:transparent;">
+                  <p>Preencha abaixo e receba o dossiê no seu e-mail:</p>
+                </div>
+              </div>
+              <div style="padding:6px 0;">
+                <div class="sib-input sib-form-block">
+                  <div class="form__entry entry_block">
+                    <div class="form__label-row">
+                      <div class="entry__field">
+                        <input class="input" maxlength="200" type="text" id="NOME" name="NOME" autocomplete="off" placeholder="Seu nome" data-required="true" required />
+                      </div>
+                    </div>
+                    <label class="entry__error entry__error--primary" style="font-size:13px;color:#661d1d;background-color:#ffeded;border-color:#ff4949;border-radius:6px;"></label>
+                  </div>
+                </div>
+              </div>
+              <div style="padding:6px 0;">
+                <div class="sib-input sib-form-block">
+                  <div class="form__entry entry_block">
+                    <div class="form__label-row">
+                      <div class="entry__field">
+                        <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="Seu melhor e-mail" data-required="true" required />
+                      </div>
+                    </div>
+                    <label class="entry__error entry__error--primary" style="font-size:13px;color:#661d1d;background-color:#ffeded;border-color:#ff4949;border-radius:6px;"></label>
+                  </div>
+                </div>
+              </div>
+              <div style="padding:6px 0;">
+                <div class="sib-sms-field sib-form-block">
+                  <div class="form__entry entry_block">
+                    <div class="form__label-row">
+                      <div class="sib-sms-input-wrapper" style="direction:ltr">
+                        <div class="sib-sms-input" data-placeholder="Seu número de WhatsApp" data-required="true" data-country-code="BR" data-value="" data-attributename="SMS">
+                          <div class="entry__field">
+                            <select class="input" name="SMS__COUNTRY_CODE" data-required="true" style="max-width:90px;">
+                              <option value="+55" selected>+55 BR</option>
+                              <option value="+1">+1 US</option>
+                              <option value="+351">+351 PT</option>
+                              <option value="+54">+54 AR</option>
+                            </select>
+                          </div>
+                          <div class="entry__field" style="width:100%">
+                            <input type="tel" class="input" id="SMS" name="SMS" autocomplete="off" placeholder="Seu WhatsApp (com DDD)" data-required="true" required />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <label class="entry__error entry__error--primary" style="font-size:13px;color:#661d1d;background-color:#ffeded;border-color:#ff4949;border-radius:6px;"></label>
+                  </div>
+                </div>
+              </div>
+              <div style="padding:6px 0;">
+                <div class="sib-form-block" style="text-align:center;">
+                  <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">
+                    <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512"><path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z"/></svg>
+                    🧵 Quero receber o dossiê gratuito
+                  </button>
+                </div>
+              </div>
+              <input type="text" name="email_address_check" value="" class="input--hidden">
+              <input type="hidden" name="locale" value="pt">
+            </form>
           </div>
-          <button type="submit" class="btn-cta">🧵 Quero receber o dossiê gratuito</button>
-        </form>
-        <p class="privacy-note">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-          Sem spam. Seus dados estão seguros.
-        </p>
+        </div>
       </div>
+      <p class="privacy-note">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        Sem spam. Seus dados estão seguros.
+      </p>
     </div>
 
     <!-- Coluna direita: mockup do livro + badge autora -->
@@ -573,14 +689,14 @@
         <div class="book">
           <div class="book-stamp">GRÁTIS</div>
           <div class="book-inner">
-            <img class="book-cover-img" src="IMAGENS/ebook_capa.jpg" alt="Dossiê Fios e Fibras" />
+            <img class="book-cover-img" src="/IMAGENS/ebook_capa.svg" alt="Dossiê Fios e Fibras" />
           </div>
           <div class="book-shine"></div>
           <div class="book-pages"></div>
         </div>
       </div>
       <div class="hero-author-badge">
-        <img src="IMAGENS/ALANA 01.JPG" alt="Alana Morais" />
+        <img src="/IMAGENS/ALANA 01.JPG" alt="Alana Morais" />
         <div>
           <strong>Alana Morais</strong>
           <span>Criadora da Fiber Emballage</span>
@@ -714,9 +830,9 @@
     <p class="label">Quem criou este dossiê</p>
     <div class="about-grid">
       <div class="alana-carousel" id="alanaCarousel">
-        <img src="IMAGENS/ALANA 01.JPG" alt="Alana Morais" class="active" />
-        <img src="IMAGENS/ALANA 02.jpg" alt="Alana Morais" />
-        <img src="IMAGENS/ALANA 03.jpg" alt="Alana Morais" />
+        <img src="/IMAGENS/ALANA 01.JPG" alt="Alana Morais" class="active" />
+        <img src="/IMAGENS/ALANA 02.jpg" alt="Alana Morais" />
+        <img src="/IMAGENS/ALANA 03.jpg" alt="Alana Morais" />
       </div>
       <div class="about-text">
         <h3>Alana Morais</h3>
@@ -742,16 +858,10 @@
 </a>
 
 <script>
-  function handleSubmit(e) {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    // TODO: integrar com Mailchimp / ConvertKit / ActiveCampaign
-    alert(`Obrigada, ${name}! 🧶\n\nEm instantes você receberá o Dossiê Fios & Fibras no seu e-mail.\n\nVerifique também sua caixa de spam.`);
-  }
-
   // Carrossel fotos Alana
   (function() {
     const imgs = document.querySelectorAll('#alanaCarousel img');
+    if (!imgs.length) return;
     let idx = 0;
     setInterval(() => {
       imgs[idx].classList.remove('active');
@@ -759,14 +869,21 @@
       imgs[idx].classList.add('active');
     }, 3000);
   })();
-
-  function handleFinalSubmit() {
-    const email = document.getElementById('final-email').value;
-    if (!email) { alert('Por favor, insira seu e-mail.'); return; }
-    // TODO: integrar com plataforma de e-mail
-    alert('Obrigada! 🧶 Em instantes você receberá o dossiê no seu e-mail.');
-  }
 </script>
+
+<script>
+  window.REQUIRED_CODE_ERROR_MESSAGE = 'Escolha um código de país';
+  window.LOCALE = 'pt';
+  window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "A informação fornecida não é válida.";
+  window.REQUIRED_ERROR_MESSAGE = "Este campo não pode ser deixado em branco.";
+  window.GENERIC_INVALID_MESSAGE = "A informação fornecida não é válida.";
+  window.INVALID_NUMBER = "Número inválido.";
+  window.INVALID_DATE = "Insira uma data válida";
+  window.REQUIRED_MULTISELECT_MESSAGE = 'Selecione pelo menos 1 opção';
+  window.translation = { common: { selectedList: '{quantity} lista selecionada', selectedLists: '{quantity} listas selecionadas', selectedOption: '{quantity} selecionado', selectedOptions: '{quantity} selecionados' } };
+  var AUTOHIDE = Boolean(0);
+</script>
+<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 
 </body>
 </html>
